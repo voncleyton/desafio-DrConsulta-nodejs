@@ -19,3 +19,18 @@ describe('Create Company Use Case', () => {
     expect(company).toHaveProperty('_id');
   });
 });
+
+it('should throw an error when company\'s CNPJ is invalid', () => {
+  const createCompany = new CreateCompany();
+
+  const companyData: ICreateCompanyDTO = {
+    CNPJ: 'invalid_CNPJ',
+    name: 'any_name',
+    address: 'any_address',
+    phone: 'any_phone',
+    motorcycleLots: 1,
+    carLots: 1
+  }
+
+  expect(() => createCompany.execute(companyData)).toThrow();
+});
