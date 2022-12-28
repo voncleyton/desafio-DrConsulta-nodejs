@@ -14,10 +14,18 @@ export class Company {
   private props: CompanyProps;
 
   constructor(props: CompanyProps, id?: string) {
+    if (!this.validateCNPJ(props.CNPJ)) throw new Error('Invalid CNPJ');
+
     this.props = {
       ...props,
       _id: props._id ?? crypto.randomUUID()
     }
+  }
+
+  private validateCNPJ(cnpj: string): boolean | null {
+    const validRegExpCNPJ = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/;
+    const isValidCNPJ = !!cnpj.match(validRegExpCNPJ);
+    return isValidCNPJ;
   }
 
   public get _id (): string | undefined {
