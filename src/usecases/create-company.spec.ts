@@ -1,12 +1,13 @@
 import { CompanyProps } from "../entities/company";
 import { CreateCompany, ICreateCompanyDTO } from "./create-company";
 
+const VALID_CNPJ = '14.245.016/0001-79'
 describe('Create Company Use Case', () => {
   it('should be possible to create a new company', () => {
     const createCompany = new CreateCompany();
 
     const companyData: ICreateCompanyDTO = {
-      CNPJ: '14.245.016/0001-79',
+      CNPJ: VALID_CNPJ,
       name: 'any_name',
       address: 'any_address',
       phone: 'any_phone',
