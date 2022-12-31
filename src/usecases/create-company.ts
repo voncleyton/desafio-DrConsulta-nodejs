@@ -1,4 +1,5 @@
 import { Company } from "../entities/company";
+import { CompaniesRepository } from "../repositories/companiesRepository";
 
 export interface ICreateCompanyDTO {
   CNPJ: string,
@@ -10,7 +11,7 @@ export interface ICreateCompanyDTO {
 }
 
 export class CreateCompany {
-  constructor() {}
+  constructor(private companiesRepository: CompaniesRepository) {}
 
   execute(companyProps: ICreateCompanyDTO): Company {
     const {
@@ -30,6 +31,8 @@ export class CreateCompany {
       motorcycleLots,
       carLots
     });
+
+    this.companiesRepository.create(company);
 
     return company;
   }
