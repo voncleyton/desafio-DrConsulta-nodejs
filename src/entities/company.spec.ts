@@ -14,12 +14,14 @@ it('should throw an error when company\'s CNPJ is invalid', () => {
 });
 
 it('should throw an error when no parking lots of any type are provided', () => {
-  expect(() => {const company = new Company({
-    CNPJ: VALID_CNPJ,
-    name: 'any_name',
-    address: 'any_address',
-    phone: 'any_phone',
-    motorcycleLots: 0,
-    carLots: 0
-  })}).toThrow();
+  expect(() => {
+    const company = new Company({
+      CNPJ: VALID_CNPJ,
+      name: 'any_name',
+      address: 'any_address',
+      phone: 'any_phone',
+      motorcycleLots: 0,
+      carLots: 0
+    })
+  }).toThrow();
 });
