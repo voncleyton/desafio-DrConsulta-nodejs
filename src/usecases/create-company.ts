@@ -13,7 +13,7 @@ export interface ICreateCompanyDTO {
 export class CreateCompany {
   constructor(private companiesRepository: CompaniesRepository) {}
 
-  execute(companyProps: ICreateCompanyDTO): Company {
+  async execute(companyProps: ICreateCompanyDTO): Promise<Company> {
     const {
       CNPJ,
       name,
@@ -23,6 +23,10 @@ export class CreateCompany {
       carLots
     } = companyProps;
     
+    const existingCompany = await this.companiesRepository.findByCNPJ(CNPJ);
+    
+    if (existingCompany) throw new Error('Company already exists');
+
     const company = new Company({
       CNPJ,
       name,
@@ -32,7 +36,7 @@ export class CreateCompany {
       carLots
     });
 
-    this.companiesRepository.create(company);
+    await this.companiesRepository.create(company);
 
     return company;
   }

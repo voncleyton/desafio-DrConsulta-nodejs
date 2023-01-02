@@ -33,4 +33,8 @@ export class Company {
   public get _id (): string | undefined {
     return this.props._id;
   }
+
+  public get CNPJ (): string {
+    return this.props.CNPJ;
+  }
 }
