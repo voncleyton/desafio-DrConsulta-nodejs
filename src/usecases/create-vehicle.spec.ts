@@ -2,6 +2,7 @@ import { VehicleProps } from "../entities/vehicle";
 import { InMemoryVehiclesRepository } from "../repositories/tests/in-memory-vehiclesRepository";
 import { CreateVehicle } from "./create-vehicle";
 
+const VALID_PLATE = 'ANY0000'
 const createVehicleFactory = () => {
   const vehiclesRepository = new InMemoryVehiclesRepository();
   const createVehicle = new CreateVehicle(vehiclesRepository);
@@ -14,7 +15,7 @@ describe('Create Vehicle Use Case', () => {
     const { createVehicle, vehiclesRepository } = createVehicleFactory();
 
     const vehicleData: VehicleProps = {
-      plate: 'any_plate',
+      plate: VALID_PLATE,
       brand: 'any_brand',
       model: 'any_model',
       color: 'any_color',
